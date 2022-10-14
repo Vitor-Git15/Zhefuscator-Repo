@@ -19,4 +19,4 @@ Test:
 	@java -javaagent:agent.jar -cp . $(TEST_FOLDER)Main.java
 
 clean:
-	@rm -rf $(AGENT_FOLDER)*.class
+	@rm -rf $(AGENT_FOLDER)*.class agent.jar
