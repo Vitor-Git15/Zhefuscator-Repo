@@ -2,22 +2,19 @@ package Zhefuscator.Agent;
 
 public class CheckStrings {
 
-  public String Hide(String S) {
-
-    String S_aux = "Password:";
-    int size = S_aux.length();
-    for (int i = 0; i < (S.length() - size); i++) {
-      S_aux += "*";
-    }
-
-    return S_aux;
+  public boolean isIPHours(String s, String regex) {
+    // grammar
+    // tentar converter o regex para um móvel, tornando capaz de alterá-lo ao chamar a função 
+    return s.matches(regex);
   }
 
-  public boolean IsPasswords(String str) {
-    return str.contains("Password:");
-  }
-  public String ConvertSpaces(String S){
-    S = S.replace(' ', '_');
-    return S;
+  public String ofuscator(String s, String regex){
+    // sensitive info
+    ManipulateRegex MR = new ManipulateRegex();
+    Encrypt ENC = new Encrypt();
+    s = MR.getGroup(s, regex, 1) +
+    "<e>" + ENC.encrypt(MR.getGroup(s, regex, 2)) +
+    "<e/>" + MR.getGroup(s, regex, 3);
+    return s;
   }
 }

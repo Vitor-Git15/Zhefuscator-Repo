@@ -1,7 +1,7 @@
 ZHE_FOLDER = ./Zhefuscator/
 AGENT_FOLDER = $(ZHE_FOLDER)Agent/
 TEST_FOLDER = $(ZHE_FOLDER)TestApplication/
-
+TEXTS_FOLDER = $(ZHE_FOLDER)/Texts/
 JC = javac
 
 all: clean ZheAgent Agentjar Inspect Test
@@ -17,6 +17,10 @@ Inspect:
 
 Test:
 	@java -javaagent:agent.jar -cp . $(TEST_FOLDER)Main.java
+
+Decrypt:
+	@$(JC) Decrypt.java
+	@java Decrypt $(TEXTS_FOLDER)result.txt $(TEXTS_FOLDER)decrypt.txt
 
 clean:
 	@rm -rf $(AGENT_FOLDER)*.class agent.jar

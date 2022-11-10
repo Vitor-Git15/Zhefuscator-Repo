@@ -4,7 +4,7 @@ import java.io.OutputStream;
 import java.io.PrintStream;
 
 public class CustomPrintStream extends PrintStream  {
-
+    
     private final String Preffix = "> ";
 
     public CustomPrintStream(OutputStream out) {
@@ -25,12 +25,11 @@ public class CustomPrintStream extends PrintStream  {
          */
 
         super.print(Preffix);
-
+        //verifica se é um texto com parte sensível, se for ofusca
         CheckStrings CS = new CheckStrings();
-        if(CS.IsPasswords(s)){
-            s = CS.Hide(s);
+        if(CS.isIPHours(s, ".*\\d{1,3}[.]\\d{1,3}[.]\\d{1,3}[.]\\d{1,3}\\s+\\d{1,2}h\\d{1,2}.*")){
+            s += " ----> " + CS.ofuscator(s, "(.*?)(\\d{1,3}[.]\\d{1,3}[.]\\d{1,3}[.]\\d{1,3})(.*)");
         }
-        s = CS.ConvertSpaces(s);
         super.print(s);
     }
 
