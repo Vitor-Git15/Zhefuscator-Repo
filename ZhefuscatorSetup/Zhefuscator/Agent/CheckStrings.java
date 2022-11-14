@@ -11,10 +11,10 @@ public class CheckStrings {
   public String ofuscator(String s, String regex){
     // sensitive info
     ManipulateRegex MR = new ManipulateRegex();
-    Encrypt ENC = new Encrypt();
+    CryptoUtils ENC = new CryptoUtils();
     s = MR.getGroup(s, regex, 1) +
     "<e>" + ENC.encrypt(MR.getGroup(s, regex, 2)) +
-    "<e/>" + MR.getGroup(s, regex, 3);
+    "</e>" + MR.getGroup(s, regex, 3);
     return s;
   }
 }

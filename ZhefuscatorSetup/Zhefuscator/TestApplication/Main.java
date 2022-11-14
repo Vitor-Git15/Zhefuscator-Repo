@@ -17,12 +17,12 @@ public class Main {
   public static void main(String[] args) {
     try {
       //abre o arquivo com os dados a serem ofuscados
-      FileReader arq = new FileReader("/home/vitor/Iniciação Científica/ZhefuscatorSetup/Zhefuscator/Texts/text.txt");
+      FileReader arq = new FileReader("Zhefuscator/Texts/original.txt");
       BufferedReader lerArq = new BufferedReader(arq);
 
       //abre o arquivo para armazenar dados ofuscados
       OutputStream os = new FileOutputStream(
-          "/home/vitor/Iniciação Científica/ZhefuscatorSetup/Zhefuscator/Texts/result.txt");
+          "Zhefuscator/Texts/encrypted.txt");
       Writer wr = new OutputStreamWriter(os);
       BufferedWriter br = new BufferedWriter(wr);
 
@@ -36,9 +36,13 @@ public class Main {
         //insere os dados ofuscados em um arquivo
         CheckStrings CS = new CheckStrings();
         if (CS.isIPHours(linha, ".*\\d{1,3}[.]\\d{1,3}[.]\\d{1,3}[.]\\d{1,3}\\s+\\d{1,2}h\\d{1,2}.*")) {
-          br.write(CS.ofuscator(">>" + linha, "(.*?)(\\d{1,3}[.]\\d{1,3}[.]\\d{1,3}[.]\\d{1,3})(.*)"));
+          br.write(CS.ofuscator(linha, "(.*?)(\\d{1,3}[.]\\d{1,3}[.]\\d{1,3}[.]\\d{1,3})(.*)"));
+          br.newLine();
+        } else{
+          br.write(linha);
           br.newLine();
         }
+        
 
         //lê a proxima linha
         linha = lerArq.readLine();

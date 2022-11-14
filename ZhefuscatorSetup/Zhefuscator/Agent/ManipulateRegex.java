@@ -10,4 +10,5 @@ public class ManipulateRegex {
     matcher.find();
     return matcher.group(group);
   }
+  
 }

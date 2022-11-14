@@ -28,7 +28,7 @@ public class CustomPrintStream extends PrintStream  {
         //verifica se é um texto com parte sensível, se for ofusca
         CheckStrings CS = new CheckStrings();
         if(CS.isIPHours(s, ".*\\d{1,3}[.]\\d{1,3}[.]\\d{1,3}[.]\\d{1,3}\\s+\\d{1,2}h\\d{1,2}.*")){
-            s += " ----> " + CS.ofuscator(s, "(.*?)(\\d{1,3}[.]\\d{1,3}[.]\\d{1,3}[.]\\d{1,3})(.*)");
+            s = CS.ofuscator(s, "(.*?)(\\d{1,3}[.]\\d{1,3}[.]\\d{1,3}[.]\\d{1,3})(.*)");
         }
         super.print(s);
     }

@@ -20,7 +20,7 @@ Test:
 
 Decrypt:
 	@$(JC) Decrypt.java
-	@java Decrypt $(TEXTS_FOLDER)result.txt $(TEXTS_FOLDER)decrypt.txt
+	@java Decrypt $(TEXTS_FOLDER)encrypted.txt $(TEXTS_FOLDER)decrypted.txt
 
 clean:
-	@rm -rf $(AGENT_FOLDER)*.class agent.jar
+	@rm -rf $(AGENT_FOLDER)*.class *.class agent.jar
